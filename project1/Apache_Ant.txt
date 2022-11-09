@@ -1,0 +1,29 @@
+compile - Компиляция проекта.
+
+test - Запуск junit тестов.
+
+deploy - Установка(копирование) jar файлов в нужную директорию, где выполняемые файлы, можно например запускать и использовать для интеграционного тестирования.
+
+javadoc - Генерация документации к разработанным классам.
+
+clean - Очистка (удаление) всех временных папок и файлов (к примеру, папка сборки).
+
+all - выполнение всех действий последовательно, например, clean затем compile затем javadoc затем jar и deploy.
+
+jar - генерация java архива всего проекта.
+
+<project name="EnglishTesting" default="compile">
+  <property name="src.java" location ="src"/>
+  <property name="build.dir" location="build"/>
+  <property name="build.classes.java" location="${build.dir}/class/java"/>
+  <target name="make.dirs" description="Making  of the auxillary dirs" >
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${build.classes.java}"/>
+  </target>
+  <target name="compile" description="Compilation of the classes" depends="make.dirs">
+    <echo>Compilation ....</echo>  
+    <javac includeantruntime="false"  destdir="${build.classes.java}">
+      <src path="${src.java}"/>
+    </javac>
+  </target>
+</project>
